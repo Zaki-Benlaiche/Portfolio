@@ -26,7 +26,7 @@ export default function ProjectsSection() {
       details:
         "موقعي الشخصي يعرض مهاراتي في React، TypeScript، TailwindCSS. يحتوي على أنيميشن سلس وتصميم متجاوب.",
       github: "https://github.com/Zaki-Benlaiche/Portfolio",
-      demo: "#",
+      demo: "https://ben-zaki.vercel.app/",
     },
     {
       title: "تطبيق إدارة المرضى",
