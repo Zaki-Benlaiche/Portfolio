@@ -25,7 +25,7 @@ export default function ProjectsSection() {
       image: "/projects/portfolio.png",
       details:
         "موقعي الشخصي يعرض مهاراتي في React، TypeScript، TailwindCSS. يحتوي على أنيميشن سلس وتصميم متجاوب.",
-      github: "#",
+      github: "https://github.com/Zaki-Benlaiche/Portfolio",
       demo: "#",
     },
     {
