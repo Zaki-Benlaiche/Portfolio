@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Zaki Ben Aicha | Full-Stack Developer Portfolio",
+  title: "Zaki Benlaiche | Full-Stack Developer Portfolio",
   description: "Portfolio of Zaki Ben Aicha, Web Developer specializing in React, Next.js, TypeScript, and Tailwind CSS.",
   keywords: ["Zaki", "Ben Aicha", "Developer", "Web Developer", "Portfolio", "Next.js", "React", "JavaScript"],
 };
