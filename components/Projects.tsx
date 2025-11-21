@@ -22,7 +22,7 @@ export default function ProjectsSection() {
     {
       title: "Portfolio Website",
       description: "موقع بورتفوليو احترافي يعرض جميع أعمالي.",
-      image: "/projects/portfolio.png",
+      image: "/projects/portfolio.jpg",
       details:
         "موقعي الشخصي يعرض مهاراتي في React، TypeScript، TailwindCSS. يحتوي على أنيميشن سلس وتصميم متجاوب.",
       github: "https://github.com/Zaki-Benlaiche/Portfolio",
