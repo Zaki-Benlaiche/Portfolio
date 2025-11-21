@@ -31,7 +31,7 @@ export default function ProjectsSection() {
     {
       title: "تطبيق إدارة المرضى",
       description: "تطبيق ويب لإدارة المرضى والمواعيد بطريقة احترافية.",
-      image: "/projects/patients.png",
+      image: "/projects/patients.jpg",
       details:
         "يتيح التطبيق إدارة المرضى، المواعيد، والعلاجات بشكل سلس. تم تصميمه باستخدام React وNext.js مع TailwindCSS.",
       github: "#",
@@ -40,7 +40,7 @@ export default function ProjectsSection() {
     {
       title: "تطبيق حجز للمطاعم",
       description: "نظام حجز طاولات للمطاعم مع إدارة الطلبات.",
-      image: "/projects/restaurant.png",
+      image: "/projects/restaurant.jpg",
       details:
         "يوفر التطبيق نظام حجز ذكي للطاولات، متابعة الطلبات والتأكيدات. مبني باستخدام React وTailwindCSS.",
       github: "#",
@@ -49,7 +49,7 @@ export default function ProjectsSection() {
     {
       title: "متجر إلكتروني",
       description: "متجر إلكتروني كامل مع سلة مشتريات ودفع عبر الإنترنت.",
-      image: "/projects/ecommerce.png",
+      image: "/projects/ecommerce.jpg",
       details:
         "متجر إلكتروني احترافي يدعم إدارة المنتجات، سلة المشتريات، والدفع عبر الإنترنت. تم بناءه باستخدام Next.js وReact.",
       github: "#",
@@ -58,7 +58,7 @@ export default function ProjectsSection() {
     {
       title: "مشروع خامس",
       description: "وصف قصير للمشروع الخامس.",
-      image: "/projects/project5.png",
+      image: "/projects/project5.jpg",
       details:
         "هذا المشروع يقدم مثالاً إضافياً على قدرتي في بناء تطبيقات ويب حديثة، مع تصميم متجاوب وتجربة مستخدم سلسة.",
       github: "#",
