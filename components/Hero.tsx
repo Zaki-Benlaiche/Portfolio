@@ -89,29 +89,35 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* صورة البروفايل دائرية 3D + إطار زجاجي + Glow */}
+  {/* صورة البروفايل — نسخة محسنة للهاتف */}
 <motion.div
   initial={{ opacity: 0, rotateY: 15, rotateX: 8, scale: 0.9 }}
   animate={{ opacity: 1, rotateY: 0, rotateX: 0, scale: 1 }}
   transition={{ duration: 1, ease: "easeOut" }}
-  whileHover={{ rotateY: 15, rotateX: 6, scale: 1.08 }}
-  className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden
-             bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_50px_20px_rgba(0,128,255,0.25)]"
+  whileHover={{ rotateY: 10, rotateX: 4, scale: 1.05 }}
+  className="
+    relative 
+    w-40 h-40           /* أصغر في الهاتف */
+    sm:w-48 sm:h-48     /* حجم متوسط للتابلت */
+    md:w-72 md:h-72     /* الحجم الكبير للكمبيوتر */
+    rounded-full overflow-hidden
+    bg-white/5 backdrop-blur-md 
+    border border-white/20 
+    shadow-[0_0_40px_15px_rgba(0,128,255,0.25)]
+    flex-shrink-0
+  "
 >
-  {/* الصورة */}
   <Image
-    src="/devlopeur.jpg"
-    alt="Zaki Profile"
+    src='/devlopeur.jpg'
+    alt='Zaki Profile'
     fill
-    className="object-cover rounded-full"
+    className='object-cover rounded-full'
   />
 
-  {/* Glow داخلي */}
   <div className="absolute inset-0 rounded-full bg-gradient-to-tr
                   from-blue-500/20 via-purple-500/10 to-transparent
                   mix-blend-screen pointer-events-none"></div>
 
-  {/* انعكاس خفيف لإضفاء عمق 3D */}
   <div className="absolute top-0 left-0 w-full h-full
                   bg-gradient-to-b from-white/10 to-transparent
                   opacity-40 mix-blend-overlay pointer-events-none"></div>

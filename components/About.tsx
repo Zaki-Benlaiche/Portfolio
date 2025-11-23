@@ -44,7 +44,7 @@ export default function AboutSection() {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="relative py-28 px-6 bg-gradient-to-b from-[#0f0f1a] via-[#11111e] to-[#0f0f1a] text-white overflow-hidden"
+      className="relative py-28 px-6 bg-gradient-to-b from-[#0f0f1a] via-[#11111e] to-[#0f0f1a] text-white"
     >
       {/* Particle Background */}
       <div className="absolute inset-0 -z-10">
@@ -52,9 +52,20 @@ export default function AboutSection() {
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col gap-28">
+        
         {/* Intro */}
         <div className="flex flex-col md:flex-row items-center gap-14">
-          <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-3xl overflow-hidden border-4 border-blue-500/30 shadow-[0_0_50px_10px_rgba(59,130,246,0.3)] transition duration-500 hover:scale-105">
+          <div className="
+            relative 
+            w-48 h-48 
+            sm:w-56 sm:h-56
+            md:w-64 md:h-64 
+            lg:w-80 lg:h-80 
+            rounded-3xl overflow-hidden 
+            border-4 border-blue-500/30 
+            shadow-[0_0_50px_10px_rgba(59,130,246,0.3)] 
+            transition duration-500 hover:scale-105
+          ">
             <Image
               src="/about/photos.jpg"
               alt="Profile"
@@ -62,12 +73,13 @@ export default function AboutSection() {
               className="object-cover brightness-100 hover:brightness-110 transition duration-500"
             />
           </div>
+
           <div className="text-center md:text-left max-w-xl">
             <h2 className="text-5xl font-extrabold text-blue-400 mb-4">Who Am I?</h2>
             <p className="text-lg text-gray-300 leading-relaxed">
-              I’m a passionate <span className="text-blue-400 font-semibold">Frontend Developer</span> 
-              specialized in building elegant, fast, and responsive user interfaces using 
-              modern technologies like <span className="text-blue-400">React</span>, <span className="text-blue-400">Next.js</span>, and 
+              I’m a passionate <span className="text-blue-400 font-semibold">Frontend Developer</span> specialized
+              in building elegant, fast, and responsive interfaces using modern technologies like 
+              <span className="text-blue-400"> React</span>, <span className="text-blue-400">Next.js</span>, and 
               <span className="text-blue-400"> Tailwind CSS</span>.
             </p>
             <p className="mt-4 text-gray-400">
@@ -78,7 +90,7 @@ export default function AboutSection() {
         </div>
 
         {/* Skills */}
-        <div className="text-center">
+        <div className="text-center mt-10 md:mt-0">
           <h3 className="text-4xl font-bold text-blue-400 mb-12">My Skills</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 justify-center px-4">
             {skills.map((skill, i) => (
@@ -99,17 +111,17 @@ export default function AboutSection() {
         <div className="relative my-20">
           <h3 className="text-4xl font-bold text-blue-400 text-center mb-12">Experience Timeline</h3>
 
-          {/* Vertical Gradient Line */}
+          {/* Vertical Line */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 via-blue-400 to-blue-500"></div>
 
-          <div className="flex flex-col md:flex-col gap-16">
+          <div className="flex flex-col gap-16">
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100, scale: 0.9 }}
                 animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
-                className={`relative w-full md:w-1/2 mx-auto md:mx-0 md:flex ${
+                className={`relative w-full md:w-1/2 mx-auto ${
                   i % 2 === 0 ? "md:ml-auto" : "md:mr-auto"
                 }`}
               >
