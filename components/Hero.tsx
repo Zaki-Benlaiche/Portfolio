@@ -6,7 +6,7 @@ import Image from "next/image";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 export default function HeroSection() {
-  const { ref } = useInView({ triggerOnce: false, threshold: 0.3 });
+  const { ref } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
     <motion.section
@@ -24,14 +24,14 @@ export default function HeroSection() {
       </div>
 
       {/* المحتوى */}
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 px-6 max-w-6xl w-full">
+      <div className="relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-12 px-6 max-w-6xl w-full">
 
         {/* النص */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-left max-w-md md:mr-auto"
+          className="text-center md:text-left max-w-md md:mr-auto"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Hi, I’m <span className="text-blue-400">Zaki Benlaiche</span>
@@ -41,7 +41,7 @@ export default function HeroSection() {
             Creative Full Stack Developer crafting modern, aesthetic web interfaces with React, TypeScript, and Tailwind.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6 justify-center md:justify-start">
             <a
               href="/cv.pdf"
               download
@@ -59,71 +59,43 @@ export default function HeroSection() {
           </div>
 
           {/* أيقونات التواصل */}
-          <div className="flex gap-4">
-            <a
-              href="https://github.com/zaki-benlaiche"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition backdrop-blur-md ring-1 ring-white/10 hover:ring-blue-500/50"
-            >
+          <div className="flex gap-4 justify-center md:justify-start">
+            <a href="https://github.com/zaki-benlaiche" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition backdrop-blur-md ring-1 ring-white/10 hover:ring-blue-500/50">
               <FaGithub size={24} />
             </a>
-
-            <a
-              href="https://linkedin.com/in/zaki-benlaiche"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition backdrop-blur-md ring-1 ring-white/10 hover:ring-blue-500/50"
-            >
+            <a href="https://linkedin.com/in/zaki-benlaiche" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition backdrop-blur-md ring-1 ring-white/10 hover:ring-blue-500/50">
               <FaLinkedin size={24} />
             </a>
-
-            <a
-              href="https://twitter.com/zaki_benlaiche"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition backdrop-blur-md ring-1 ring-white/10 hover:ring-blue-500/50"
-            >
+            <a href="https://twitter.com/zaki_benlaiche" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition backdrop-blur-md ring-1 ring-white/10 hover:ring-blue-500/50">
               <FaTwitter size={24} />
             </a>
           </div>
         </motion.div>
 
-  {/* صورة البروفايل — نسخة محسنة للهاتف */}
-<motion.div
-  initial={{ opacity: 0, rotateY: 15, rotateX: 8, scale: 0.9 }}
-  animate={{ opacity: 1, rotateY: 0, rotateX: 0, scale: 1 }}
-  transition={{ duration: 1, ease: "easeOut" }}
-  whileHover={{ rotateY: 10, rotateX: 4, scale: 1.05 }}
-  className="
-    relative 
-    w-40 h-40           /* أصغر في الهاتف */
-    sm:w-48 sm:h-48     /* حجم متوسط للتابلت */
-    md:w-72 md:h-72     /* الحجم الكبير للكمبيوتر */
-    rounded-full overflow-hidden
-    bg-white/5 backdrop-blur-md 
-    border border-white/20 
-    shadow-[0_0_40px_15px_rgba(0,128,255,0.25)]
-    flex-shrink-0
-  "
->
-  <Image
-    src='/devlopeur.jpg'
-    alt='Zaki Profile'
-    fill
-    className='object-cover rounded-full'
-  />
+        {/* صورة البروفايل */}
+        <motion.div
+          initial={{ opacity: 0, rotateY: 15, rotateX: 8, scale: 0.9 }}
+          animate={{ opacity: 1, rotateY: 0, rotateX: 0, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          whileHover={{ rotateY: 10, rotateX: 4, scale: 1.05 }}
+          className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 rounded-full overflow-hidden
+                     bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_40px_15px_rgba(0,128,255,0.25)] flex-shrink-0"
+        >
+          <Image
+            src="/devlopeur.jpg"
+            alt="Zaki Profile"
+            fill
+            className="object-cover rounded-full"
+          />
 
-  <div className="absolute inset-0 rounded-full bg-gradient-to-tr
-                  from-blue-500/20 via-purple-500/10 to-transparent
-                  mix-blend-screen pointer-events-none"></div>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-tr
+                          from-blue-500/20 via-purple-500/10 to-transparent
+                          mix-blend-screen pointer-events-none"></div>
 
-  <div className="absolute top-0 left-0 w-full h-full
-                  bg-gradient-to-b from-white/10 to-transparent
-                  opacity-40 mix-blend-overlay pointer-events-none"></div>
-</motion.div>
-
-
+          <div className="absolute top-0 left-0 w-full h-full
+                          bg-gradient-to-b from-white/10 to-transparent
+                          opacity-40 mix-blend-overlay pointer-events-none"></div>
+        </motion.div>
       </div>
     </motion.section>
   );
