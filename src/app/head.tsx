@@ -12,8 +12,8 @@ export const metadata = {
   ],
   icons: {
     icon: "/ARZ.jpg",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    shortcut: "/ARZ.jpg",
+    apple: "/ARZ.jpg",
   },
   openGraph: {
     title: "Ben Zaki | Portfolio",
@@ -38,6 +38,6 @@ export const metadata = {
     description:
       "Portfolio of Zaki Benlaiche, showcasing React, Next.js, TailwindCSS projects.",
     creator: "@zaki_benlaiche",
-    images: ["/og-image.png"],
+    images: ["/ARZ.jpg"],
   },
 };
