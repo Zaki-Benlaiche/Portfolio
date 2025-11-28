@@ -24,7 +24,32 @@ export default function HeroSection() {
       </div>
 
       {/* المحتوى */}
-      <div className="relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-12 px-6 max-w-6xl w-full">
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 px-6 max-w-6xl w-full">
+
+        {/* صورة البروفايل — تظهر فوق النص في الموبايل */}
+        <motion.div
+          initial={{ opacity: 0, rotateY: 15, rotateX: 8, scale: 0.9 }}
+          animate={{ opacity: 1, rotateY: 0, rotateX: 0, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          whileHover={{ rotateY: 10, rotateX: 4, scale: 1.05 }}
+          className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 rounded-full overflow-hidden
+                     bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_40px_15px_rgba(0,128,255,0.25)] flex-shrink-0"
+        >
+          <Image
+            src="/devlopeur.jpg"
+            alt="Zaki Profile"
+            fill
+            className="object-cover rounded-full"
+          />
+
+          <div className="absolute inset-0 rounded-full bg-gradient-to-tr
+                          from-blue-500/20 via-purple-500/10 to-transparent
+                          mix-blend-screen pointer-events-none"></div>
+
+          <div className="absolute top-0 left-0 w-full h-full
+                          bg-gradient-to-b from-white/10 to-transparent
+                          opacity-40 mix-blend-overlay pointer-events-none"></div>
+        </motion.div>
 
         {/* النص */}
         <motion.div
@@ -70,31 +95,6 @@ export default function HeroSection() {
               <FaTwitter size={24} />
             </a>
           </div>
-        </motion.div>
-
-        {/* صورة البروفايل */}
-        <motion.div
-          initial={{ opacity: 0, rotateY: 15, rotateX: 8, scale: 0.9 }}
-          animate={{ opacity: 1, rotateY: 0, rotateX: 0, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          whileHover={{ rotateY: 10, rotateX: 4, scale: 1.05 }}
-          className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 rounded-full overflow-hidden
-                     bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_40px_15px_rgba(0,128,255,0.25)] flex-shrink-0"
-        >
-          <Image
-            src="/devlopeur.jpg"
-            alt="Zaki Profile"
-            fill
-            className="object-cover rounded-full"
-          />
-
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr
-                          from-blue-500/20 via-purple-500/10 to-transparent
-                          mix-blend-screen pointer-events-none"></div>
-
-          <div className="absolute top-0 left-0 w-full h-full
-                          bg-gradient-to-b from-white/10 to-transparent
-                          opacity-40 mix-blend-overlay pointer-events-none"></div>
         </motion.div>
       </div>
     </motion.section>
