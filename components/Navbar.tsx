@@ -1,54 +1,108 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 export default function Navbar() {
-  const [animationKey, setAnimationKey] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("home");
 
-  const handleLinkClick = () => {
-    setAnimationKey((prev) => prev + 1);
-  };
+  // Detect scroll to add navbar background
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) setScrolled(true);
+      else setScrolled(false);
 
-  const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+      // Update active section based on scroll
+      const sections = ["home", "about", "projects", "skills", "contact"];
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          const top = section.offsetTop - 100;
+          const bottom = top + section.offsetHeight;
+          if (window.scrollY >= top && window.scrollY < bottom) setActive(id);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const links = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "projects", label: "Projects" },
+    { id: "skills", label: "Skills" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
-    <motion.header
-      key={animationKey}
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
+    <motion.nav
+      initial={{ y: -50 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-md border-b border-gray-800"
+      className={`fixed top-4 left-1/2 -translate-x-1/2
+      w-[90%] md:w-[75%] lg:w-[65%] 
+      z-50 rounded-2xl border
+      transition-all duration-300 
+      ${scrolled ? "backdrop-blur-xl bg-black/40 border-white/20 shadow-xl" : "backdrop-blur-lg bg-white/10 border-white/10"}`}
     >
-      <nav className="flex items-center justify-between px-8 py-4 max-w-7xl mx-auto">
-        {/* الشعار على اليسار */}
-        <div className="text-xl font-bold text-white">Zaki.tech</div>
+      <div className="flex justify-between items-center px-6 py-3">
 
-        {/* روابط في المنتصف */}
-        <ul className="flex space-x-10 text-sm md:text-base text-white">
-          {navLinks.map((link) => (
-            <motion.li
-              key={link.href}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+        {/* Logo */}
+        <a href="#home" className="text-xl font-bold text-white tracking-wide">
+          Zaki<span className="text-teal-400">Dev</span>
+        </a>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              className={`relative text-white transition ${
+                active === link.id ? "text-teal-300" : "hover:text-teal-200"
+              }`}
             >
-              <motion.a
-                href={link.href}
-                onClick={handleLinkClick}
-                className="hover:text-blue-400 transition-colors duration-300"
-                whileHover={{ color: "#60a5fa" }}
-              >
-                {link.label}
-              </motion.a>
-            </motion.li>
+              {link.label}
+              {active === link.id && (
+                <motion.div
+                  layoutId="activeLink"
+                  className="absolute -bottom-1 left-0 w-full h-[2px] bg-teal-300 rounded"
+                />
+              )}
+            </a>
           ))}
-        </ul>
-      </nav>
-    </motion.header>
+        </div>
+
+        {/* Mobile toggle */}
+        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:hidden flex flex-col bg-black/60 backdrop-blur-xl px-6 py-4 space-y-4 rounded-b-2xl"
+        >
+          {links.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={() => setIsOpen(false)}
+              className={`text-white text-lg ${active === link.id ? "text-teal-300" : ""}`}
+            >
+              {link.label}
+            </a>
+          ))}
+        </motion.div>
+      )}
+    </motion.nav>
   );
 }
