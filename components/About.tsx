@@ -30,9 +30,26 @@ export default function AboutSection() {
           transition={{ duration: 0.6 }}
           className="flex flex-col md:flex-row items-center gap-14"
         >
-          <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-3xl overflow-hidden border-4 border-blue-500/30 shadow-[0_0_50px_10px_rgba(59,130,246,0.3)] transition duration-500 hover:scale-105">
-            <Image src="/about/photos.jpg" alt="Profile" fill className="object-cover" />
-          </div>
+          <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden 
+  bg-gradient-to-br from-blue-500/20 to-slate-900/40
+  border border-white/20
+  shadow-[0_20px_60px_rgba(0,0,0,0.35)]
+  transition-all duration-500 ease-out
+  hover:scale-[1.03] hover:shadow-[0_30px_80px_rgba(59,130,246,0.35)]">
+
+  {/* Glow */}
+  <div className="absolute inset-0 rounded-2xl 
+    bg-blue-500/10 blur-2xl opacity-60 -z-10" />
+
+  <Image
+    src="/about/zaki.jpg"
+    alt="Zaki Benlaiche - Professional Portrait"
+    fill
+    priority
+    className="object-cover object-top scale-105"
+  />
+</div>
+
 
           <div className="text-center md:text-left max-w-xl">
             <h2 className="text-5xl font-extrabold text-blue-400 mb-4">Who Am I?</h2>
