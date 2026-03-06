@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { SiOpenai, SiReplicate, SiHuggingface } from "react-icons/si"; // AI Icons added
+import { SiOpenai, SiHuggingface } from "react-icons/si";
 
-export default function HeroSection() {
-  const { ref } = useInView({ triggerOnce: true, threshold: 0.3 });
+export default function Hero() {
+  const { ref } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
     <motion.section
