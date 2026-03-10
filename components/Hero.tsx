@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { SiOpenai, SiHuggingface } from "react-icons/si";
+import HeroBackground3D from "./HeroBackground3D";
 
 export default function Hero() {
   const { ref } = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -16,14 +17,13 @@ export default function Hero() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="relative pt-32 pb-24 min-h-screen flex items-center justify-center text-zinc-300 overflow-hidden bg-[#050505]"
+      className="relative pt-32 pb-24 min-h-screen flex items-center justify-center text-zinc-300 overflow-hidden bg-[#020408]"
     >
-      {/* Subtle Background Elements */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.03)_0%,transparent_50%)]" />
+      {/* Interactive 3D Canvas Background */}
+      <HeroBackground3D />
 
-      {/* Fine Background Grid */}
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_100%)] opacity-20" />
+      {/* Subtle top gradient for text contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#020408]/30 via-transparent to-[#020408]/70 pointer-events-none z-0" />
 
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-16 px-6 max-w-7xl w-full">
 
@@ -116,28 +116,36 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 rounded-full flex-shrink-0 order-1 md:order-2 group mt-8 md:mt-0"
+          className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] rounded-full flex-shrink-0 order-1 md:order-2 group mt-8 md:mt-0"
         >
           {/* Premium Glow Base */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-zinc-700/30 to-zinc-300/10 blur-3xl opacity-50 group-hover:opacity-80 transition-opacity duration-700" />
+          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-600/30 via-purple-500/10 to-cyan-400/5 blur-3xl opacity-50 group-hover:opacity-90 transition-opacity duration-700" />
 
-          {/* Subtle Outer Rings */}
-          <div className="absolute inset-[-4px] rounded-full border border-white/10 animate-[spin_20s_linear_infinite]" />
-          <div className="absolute inset-[-15px] border border-white/5 rounded-full border-dashed animate-[spin_30s_linear_infinite_reverse]" />
+          {/* Futuristic Tech Rings */}
+          <div className="absolute inset-[-6px] rounded-full border border-blue-500/20 animate-[spin_15s_linear_infinite]" />
+          <div className="absolute inset-[-20px] border border-purple-500/10 rounded-full border-dashed animate-[spin_28s_linear_infinite_reverse]" />
 
-          {/* Mask tracking the inner image */}
-          <div className="absolute inset-0 bg-[#050505] rounded-full p-2 overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-zinc-800">
-            <Image
-              src="/zakiHome.jpg"
-              alt="Zaki Benlaiche"
-              fill
-              priority
-              className="object-cover object-top rounded-full p-1 
-                         grayscale-0 brightness-110 contrast-105
-                         hover:scale-105 transition-transform duration-700 ease-out"
-            />
-            {/* Tech Scanline Overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px] opacity-20 pointer-events-none rounded-full" />
+          {/* Glowing border ring */}
+          <div className="absolute inset-0 rounded-full shadow-[0_0_40px_rgba(59,130,246,0.2),0_0_80px_rgba(139,92,246,0.1)] z-10 pointer-events-none" />
+
+          {/* Image Container */}
+          <div className="absolute inset-0 bg-[#020408] rounded-full p-[3px] overflow-hidden z-10"
+            style={{ background: 'linear-gradient(145deg, rgba(59,130,246,0.3), rgba(139,92,246,0.15), rgba(2,4,8,1))' }}>
+            <div className="w-full h-full rounded-full overflow-hidden bg-[#020408]">
+              <Image
+                src="/zakiHome.jpg"
+                alt="Zaki Benlaiche"
+                fill
+                priority
+                className="object-cover object-top rounded-full
+                           brightness-105 contrast-105
+                           hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              {/* Very subtle scanline */}
+              <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,30,0.08)_50%)] bg-[length:100%_3px] opacity-20 pointer-events-none rounded-full" />
+              {/* Subtle inner glow */}
+              <div className="absolute inset-0 rounded-full shadow-[inset_0_0_30px_rgba(59,130,246,0.15)] pointer-events-none" />
+            </div>
           </div>
         </motion.div>
 

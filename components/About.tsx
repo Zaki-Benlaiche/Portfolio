@@ -105,8 +105,8 @@ const About: FC = () => {
               Merging the precision of <strong className="text-white font-medium">Machine Learning</strong> with the infrastructure of <strong className="text-zinc-200 font-medium">High-Performance Web Systems</strong>.
             </p>
             <p>
-              I specialize in engineering intelligent, scalable architectures. From integrating autonomous AI agents and neural pipelines to orchestrating responsive, modern frontends, I build robust systems that don't just calculate data—they comprehend, adapt, and scale globally.
-            </p>
+  I specialize in engineering intelligent, scalable architectures. From integrating autonomous AI agents and neural pipelines to orchestrating responsive, modern frontends, I build robust systems that don&apos;t just calculate data—they comprehend, adapt, and scale globally.
+</p>
           </div>
 
           {/* System Components Stack */}
