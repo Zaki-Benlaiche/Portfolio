@@ -22,8 +22,8 @@ export default function Hero() {
       {/* Interactive 3D Canvas Background */}
       <HeroBackground3D />
 
-      {/* Subtle top gradient for text contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020408]/30 via-transparent to-[#020408]/70 pointer-events-none z-0" />
+      {/* Very subtle gradient for text contrast - kept minimal to reveal background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#020408]/50 pointer-events-none z-0" />
 
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-16 px-6 max-w-7xl w-full">
 

@@ -35,10 +35,10 @@ export default function HeroBackground3D() {
         const FOCAL_LENGTH = 600;
 
         const colors = [
-            "rgba(100, 160, 255,",
-            "rgba(130, 100, 255,",
-            "rgba(60, 210, 255,",
-            "rgba(180, 140, 255,",
+            "rgba(130, 190, 255,",
+            "rgba(160, 120, 255,",
+            "rgba(80, 230, 255,",
+            "rgba(210, 170, 255,",
         ];
 
         const particles: Particle[] = Array.from({ length: PARTICLE_COUNT }, () => ({
@@ -49,9 +49,9 @@ export default function HeroBackground3D() {
             baseY: Math.random() * height,
             vx: (Math.random() - 0.5) * 0.3,
             vy: (Math.random() - 0.5) * 0.3,
-            size: Math.random() * 2 + 0.5,
+            size: Math.random() * 2.5 + 1,
             color: colors[Math.floor(Math.random() * colors.length)],
-            opacity: Math.random() * 0.6 + 0.2,
+            opacity: Math.random() * 0.5 + 0.5,
             speed: Math.random() * 0.4 + 0.1,
         }));
 
@@ -67,11 +67,11 @@ export default function HeroBackground3D() {
         const draw = () => {
             ctx.clearRect(0, 0, width, height);
 
-            // Deep dark gradient background
+            // Slightly brighter dark gradient background
             const bg = ctx.createLinearGradient(0, 0, width, height);
-            bg.addColorStop(0, "#020408");
-            bg.addColorStop(0.5, "#030610");
-            bg.addColorStop(1, "#020408");
+            bg.addColorStop(0, "#04080f");
+            bg.addColorStop(0.5, "#060b1c");
+            bg.addColorStop(1, "#04080f");
             ctx.fillStyle = bg;
             ctx.fillRect(0, 0, width, height);
 
@@ -111,7 +111,7 @@ export default function HeroBackground3D() {
 
                     const dist = Math.hypot(proj1.sx - proj2.sx, proj1.sy - proj2.sy);
                     if (dist < CONNECTION_DISTANCE) {
-                        const alpha = (1 - dist / CONNECTION_DISTANCE) * 0.12 * Math.min(proj1.scale, proj2.scale);
+                        const alpha = (1 - dist / CONNECTION_DISTANCE) * 0.35 * Math.min(proj1.scale, proj2.scale);
                         const grad = ctx.createLinearGradient(proj1.sx, proj1.sy, proj2.sx, proj2.sy);
                         grad.addColorStop(0, `${p1.color}${alpha})`);
                         grad.addColorStop(1, `${p2.color}${alpha})`);
@@ -119,7 +119,7 @@ export default function HeroBackground3D() {
                         ctx.moveTo(proj1.sx, proj1.sy);
                         ctx.lineTo(proj2.sx, proj2.sy);
                         ctx.strokeStyle = grad;
-                        ctx.lineWidth = proj1.scale * 0.8;
+                        ctx.lineWidth = proj1.scale * 1.2;
                         ctx.stroke();
                     }
                 }
@@ -131,26 +131,27 @@ export default function HeroBackground3D() {
                 const radius = p.size * scale * 1.5;
                 const alpha = p.opacity * scale;
 
-                // Glow effect
-                const glow = ctx.createRadialGradient(sx, sy, 0, sx, sy, radius * 4);
-                glow.addColorStop(0, `${p.color}${alpha * 0.8})`);
-                glow.addColorStop(0.4, `${p.color}${alpha * 0.4})`);
+                // Glow effect — larger and brighter
+                const glow = ctx.createRadialGradient(sx, sy, 0, sx, sy, radius * 7);
+                glow.addColorStop(0, `${p.color}${Math.min(alpha * 1.3, 1)})`);
+                glow.addColorStop(0.3, `${p.color}${alpha * 0.8})`);
+                glow.addColorStop(0.6, `${p.color}${alpha * 0.3})`);
                 glow.addColorStop(1, `${p.color}0)`);
                 ctx.beginPath();
-                ctx.arc(sx, sy, radius * 4, 0, Math.PI * 2);
+                ctx.arc(sx, sy, radius * 7, 0, Math.PI * 2);
                 ctx.fillStyle = glow;
                 ctx.fill();
 
-                // Core dot
+                // Core dot — brighter
                 ctx.beginPath();
                 ctx.arc(sx, sy, radius, 0, Math.PI * 2);
-                ctx.fillStyle = `${p.color}${Math.min(alpha + 0.2, 1)})`;
+                ctx.fillStyle = `${p.color}${Math.min(alpha + 0.5, 1)})`;
                 ctx.fill();
             });
 
             // 3D Grid Perspective floor
             ctx.save();
-            ctx.globalAlpha = 0.04;
+            ctx.globalAlpha = 0.12;
             const gridLines = 20;
             const gridZ = 500;
             for (let i = 0; i <= gridLines; i++) {
@@ -179,13 +180,13 @@ export default function HeroBackground3D() {
             }
             ctx.restore();
 
-            // Vignette overlay
+            // Vignette overlay — much lighter to reveal the background
             const vignette = ctx.createRadialGradient(
-                width / 2, height / 2, height * 0.2,
-                width / 2, height / 2, height * 0.9
+                width / 2, height / 2, height * 0.4,
+                width / 2, height / 2, height * 1.1
             );
             vignette.addColorStop(0, "transparent");
-            vignette.addColorStop(1, "rgba(2,4,8,0.8)");
+            vignette.addColorStop(1, "rgba(2,4,8,0.35)");
             ctx.fillStyle = vignette;
             ctx.fillRect(0, 0, width, height);
 
@@ -215,7 +216,7 @@ export default function HeroBackground3D() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full -z-20"
+            className="fixed inset-0 w-full h-full -z-20"
             style={{ display: "block" }}
         />
     );
