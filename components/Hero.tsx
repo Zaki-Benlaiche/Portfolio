@@ -1,155 +1,302 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { SiOpenai, SiHuggingface } from "react-icons/si";
 import HeroBackground3D from "./HeroBackground3D";
 
+const ROLES = [
+  "AI Agent Architect",
+  "Full-Stack Engineer",
+  "LLM Systems Builder",
+  "AI Systems Designer",
+];
+
+function useTypewriter(words: string[], typeSpeed = 75, deleteSpeed = 40, pauseMs = 2200) {
+  const [displayed, setDisplayed] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [typing, setTyping] = useState(true);
+
+  useEffect(() => {
+    const current = words[wordIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (typing) {
+      if (displayed.length < current.length) {
+        timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), typeSpeed);
+      } else {
+        timeout = setTimeout(() => setTyping(false), pauseMs);
+      }
+    } else {
+      if (displayed.length > 0) {
+        timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), deleteSpeed);
+      } else {
+        setTyping(true);
+        setWordIndex((prev) => (prev + 1) % words.length);
+      }
+    }
+    return () => clearTimeout(timeout);
+  }, [displayed, typing, wordIndex, words, typeSpeed, deleteSpeed, pauseMs]);
+
+  return displayed;
+}
+
+const floatingBadges = [
+  { label: "React 19",      color: "from-cyan-500/20 to-blue-500/10",   border: "border-cyan-500/30",   delay: 0.2 },
+  { label: "Next.js 15",    color: "from-white/10 to-white/5",          border: "border-white/20",      delay: 0.4 },
+  { label: "LangChain",     color: "from-green-500/20 to-emerald-500/10", border: "border-green-500/30", delay: 0.6 },
+  { label: "TypeScript",    color: "from-blue-600/20 to-blue-400/10",   border: "border-blue-500/30",   delay: 0.8 },
+  { label: "OpenAI API",    color: "from-purple-500/20 to-purple-400/10", border: "border-purple-500/30", delay: 1.0 },
+  { label: "Python",        color: "from-yellow-500/20 to-amber-400/10","border": "border-yellow-500/30", delay: 1.2 },
+];
+
 export default function Hero() {
-  const { ref } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const typedRole = useTypewriter(ROLES);
 
   return (
     <motion.section
       id="home"
-      ref={ref}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
       className="relative pt-32 pb-24 min-h-screen flex items-center justify-center text-zinc-300 overflow-hidden bg-[#020408]"
     >
-      {/* Interactive 3D Canvas Background */}
       <HeroBackground3D />
-
-      {/* Very subtle gradient for text contrast - kept minimal to reveal background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#020408]/50 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#020408]/60 pointer-events-none z-0" />
 
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-16 px-6 max-w-7xl w-full">
 
-        {/* Text Area */}
+        {/* ── Text ── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
           className="text-center md:text-left flex-1 md:mr-auto flex flex-col items-center md:items-start order-2 md:order-1"
         >
-          {/* Top Badge */}
+          {/* Available badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 text-zinc-300 text-xs font-mono tracking-widest uppercase shadow-[0_0_15px_rgba(255,255,255,0.03)] backdrop-blur-sm self-center md:self-start"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-zinc-400"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
             </span>
             Available for New Architectures
           </motion.div>
 
           {/* Heading */}
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-[1.1] tracking-tight text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.1)]">
-            Hi, I’m{" "}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="text-5xl md:text-7xl font-extrabold mb-4 leading-[1.1] tracking-tight text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.1)]"
+          >
+            Hi, I&apos;m{" "}
             <br className="hidden md:block" />
-            <span className="bg-gradient-to-br from-white via-zinc-400 to-zinc-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-br from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">
               Zaki Benlaiche
             </span>
-          </h1>
+          </motion.h1>
 
-          <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-6 text-zinc-500 font-mono text-sm uppercase tracking-widest mt-2">
-            <span className="flex items-center gap-2"><SiOpenai size={14} className="text-zinc-400" /> AI Agents</span>
+          {/* Typewriter role */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="flex items-center gap-2 mb-6 h-8"
+          >
+            <span className="text-blue-400/70 font-mono text-xs tracking-widest uppercase">&gt;_</span>
+            <span className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 bg-clip-text text-transparent font-mono">
+              {typedRole}
+            </span>
+            <span className="w-[2px] h-6 bg-blue-400 animate-blink rounded-full" />
+          </motion.div>
+
+          {/* Sub-roles row */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="flex flex-wrap justify-center md:justify-start gap-4 mb-6 text-zinc-500 font-mono text-xs uppercase tracking-widest"
+          >
+            <span className="flex items-center gap-1.5"><SiOpenai size={12} className="text-zinc-400" /> AI Agents</span>
             <span className="hidden md:inline text-zinc-800">/</span>
-            <span className="flex items-center gap-2"><SiHuggingface size={14} className="text-zinc-400" /> LLM Systems</span>
+            <span className="flex items-center gap-1.5"><SiHuggingface size={12} className="text-zinc-400" /> LLM Systems</span>
             <span className="hidden md:inline text-zinc-800">/</span>
-            <span className="flex items-center gap-2">Full-Stack Scale</span>
-          </div>
+            <span>Full-Stack Scale</span>
+          </motion.div>
 
-          <p className="text-zinc-400 mb-10 leading-relaxed text-lg lg:text-xl max-w-xl font-light">
-            An elite <strong className="text-zinc-200 font-medium">AI-Focused Full-Stack Developer</strong> specializing in composing intelligent multi-agent systems, highly scalable infrastructure, and sophisticated web applications tailored for the AI era.
-          </p>
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1 }}
+            className="text-zinc-400 mb-10 leading-relaxed text-lg max-w-xl font-light"
+          >
+            An <strong className="text-zinc-200 font-medium">AI-Focused Full-Stack Developer</strong> composing intelligent multi-agent systems, scalable infrastructure, and sophisticated web applications built for the AI era.
+          </motion.p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-5 mb-12 justify-center md:justify-start w-full sm:w-auto">
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+            className="flex flex-col sm:flex-row gap-4 mb-12 justify-center md:justify-start w-full sm:w-auto"
+          >
             <a
               href="#projects"
-              className="group px-8 py-3.5 rounded-full bg-white text-black font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2"
+              className="group relative px-8 py-3.5 rounded-full bg-white text-black font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.45)] flex items-center justify-center gap-2 overflow-hidden"
             >
-              Explore Solutions
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-100 to-purple-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="relative">Explore My Work</span>
               <motion.span
-                className="inline-block"
-                initial={{ x: 0 }}
-                whileHover={{ x: 4 }}
+                className="relative inline-block"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               >
                 →
               </motion.span>
             </a>
-
             <a
               href="/cv.pdf"
               download
               className="px-8 py-3.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 text-white font-medium backdrop-blur-md transition-all duration-300 text-center flex items-center justify-center gap-2 group"
             >
-              <span className="text-zinc-400 group-hover:text-white transition-colors">📄</span> View CV
+              <span className="text-zinc-400 group-hover:text-white transition-colors">📄</span> Download CV
             </a>
-          </div>
+          </motion.div>
 
           {/* Social Links */}
-          <div className="flex gap-4 justify-center md:justify-start mt-auto">
-            <a href="https://github.com/zaki-benlaiche" target="_blank" rel="noopener noreferrer"
-              className="p-3.5 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-500 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all backdrop-blur-md group">
-              <FaGithub size={20} className="group-hover:scale-110 transition-transform" />
-            </a>
-            <a href="https://linkedin.com/in/zaki-benlaiche" target="_blank" rel="noopener noreferrer"
-              className="p-3.5 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-500 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all backdrop-blur-md group">
-              <FaLinkedin size={20} className="group-hover:scale-110 transition-transform" />
-            </a>
-            <a href="https://twitter.com/zaki_benlaiche" target="_blank" rel="noopener noreferrer"
-              className="p-3.5 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-500 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all backdrop-blur-md group">
-              <FaTwitter size={20} className="group-hover:scale-110 transition-transform" />
-            </a>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.35 }}
+            className="flex gap-4 justify-center md:justify-start"
+          >
+            {[
+              { href: "https://github.com/zaki-benlaiche",   Icon: FaGithub,   label: "GitHub"   },
+              { href: "https://linkedin.com/in/zaki-benlaiche", Icon: FaLinkedin, label: "LinkedIn" },
+              { href: "https://twitter.com/zaki_benlaiche",  Icon: FaTwitter,  label: "Twitter"  },
+            ].map(({ href, Icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="p-3.5 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-500 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all backdrop-blur-md group"
+              >
+                <Icon size={20} className="group-hover:scale-110 transition-transform" />
+              </a>
+            ))}
+          </motion.div>
         </motion.div>
 
-        {/* Image Area */}
+        {/* ── Image card ── */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] rounded-full flex-shrink-0 order-1 md:order-2 group mt-8 md:mt-0"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, type: "spring", bounce: 0.35 }}
+          className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[420px] md:h-[420px] flex-shrink-0 order-1 md:order-2 group mt-8 md:mt-0 perspective-1000"
         >
-          {/* Premium Glow Base */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-600/30 via-purple-500/10 to-cyan-400/5 blur-3xl opacity-50 group-hover:opacity-90 transition-opacity duration-700" />
+          {/* Ambient glow */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/15 via-zinc-400/5 to-purple-600/15 rounded-full blur-[80px] opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
 
-          {/* Futuristic Tech Rings */}
-          <div className="absolute inset-[-6px] rounded-full border border-blue-500/20 animate-[spin_15s_linear_infinite]" />
-          <div className="absolute inset-[-20px] border border-purple-500/10 rounded-full border-dashed animate-[spin_28s_linear_infinite_reverse]" />
+          {/* Card */}
+          <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 bg-[#050505]/40 backdrop-blur-xl shadow-[0_0_60px_rgba(255,255,255,0.04)] transform-gpu transition-all duration-700 group-hover:-translate-y-2 group-hover:shadow-[0_24px_80px_rgba(255,255,255,0.09)]">
+            {/* Top accent */}
+            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-zinc-400/60 to-transparent z-20" />
 
-          {/* Glowing border ring */}
-          <div className="absolute inset-0 rounded-full shadow-[0_0_40px_rgba(59,130,246,0.2),0_0_80px_rgba(139,92,246,0.1)] z-10 pointer-events-none" />
+            {/* Internal grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:linear-gradient(to_bottom,transparent_10%,black_50%,transparent_90%)] z-10 pointer-events-none" />
 
-          {/* Image Container */}
-          <div className="absolute inset-0 bg-[#020408] rounded-full p-[3px] overflow-hidden z-10"
-            style={{ background: 'linear-gradient(145deg, rgba(59,130,246,0.3), rgba(139,92,246,0.15), rgba(2,4,8,1))' }}>
-            <div className="w-full h-full rounded-full overflow-hidden bg-[#020408]">
+            {/* Status */}
+            <div className="absolute top-4 right-4 z-30 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span className="text-[8px] font-mono text-emerald-400/80 tracking-widest uppercase">System Ready</span>
+            </div>
+
+            {/* Profile image */}
+            <div className="absolute inset-x-4 top-4 bottom-16 rounded-xl overflow-hidden border border-white/5 bg-black z-20">
               <Image
                 src="/zakiHome.jpg"
                 alt="Zaki Benlaiche"
                 fill
                 priority
-                className="object-cover object-top rounded-full
-                           brightness-105 contrast-105
-                           hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover object-top brightness-110 contrast-105 group-hover:scale-105 transition-transform duration-700 ease-in-out"
               />
-              {/* Very subtle scanline */}
-              <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,30,0.08)_50%)] bg-[length:100%_3px] opacity-20 pointer-events-none rounded-full" />
-              {/* Subtle inner glow */}
-              <div className="absolute inset-0 rounded-full shadow-[inset_0_0_30px_rgba(59,130,246,0.15)] pointer-events-none" />
+              {/* Scanline sweep */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent h-[200%] animate-[scan_6s_linear_infinite] pointer-events-none mix-blend-overlay" />
+              {/* Vignette */}
+              <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] pointer-events-none" />
+            </div>
+
+            {/* Bottom info bar */}
+            <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-black to-black/80 border-t border-white/5 z-20 flex items-center justify-between px-6 backdrop-blur-md">
+              <div className="flex flex-col">
+                <span className="text-white text-sm font-bold tracking-wide">ZAKI.BENLAICHE</span>
+                <span className="text-zinc-500 text-[10px] font-mono tracking-widest uppercase">ID: ARCHITECT-01</span>
+              </div>
+              <div className="flex gap-1.5">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className={`w-1.5 h-4 rounded-sm ${i < 4 ? "bg-zinc-400" : "bg-zinc-800"}`} />
+                ))}
+              </div>
             </div>
           </div>
+
+          {/* Decorative lines */}
+          <div className="absolute -left-6 top-1/4 w-12 h-px bg-zinc-500/50" />
+          <div className="absolute -right-6 bottom-1/4 w-12 h-px bg-zinc-500/50" />
+
+          {/* Floating tech badges */}
+          {floatingBadges.map((badge, i) => {
+            const positions = [
+              "-top-4 -left-8",
+              "-top-4 -right-8",
+              "top-1/3 -left-12",
+              "top-1/3 -right-12",
+              "-bottom-4 -left-8",
+              "-bottom-4 -right-8",
+            ];
+            return (
+              <motion.div
+                key={badge.label}
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.5 + badge.delay, duration: 0.4 }}
+                className={`absolute ${positions[i]} hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r ${badge.color} border ${badge.border} text-[10px] font-mono text-zinc-300 backdrop-blur-md whitespace-nowrap animate-float`}
+                style={{ animationDelay: `${i * 0.4}s` }}
+              >
+                {badge.label}
+              </motion.div>
+            );
+          })}
         </motion.div>
 
       </div>
+
+      {/* Scroll hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+      >
+        <span className="text-zinc-600 text-[10px] font-mono tracking-widest uppercase">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="w-5 h-8 rounded-full border border-zinc-700 flex items-start justify-center pt-1.5"
+        >
+          <div className="w-1 h-2 rounded-full bg-zinc-500" />
+        </motion.div>
+      </motion.div>
     </motion.section>
   );
 }
