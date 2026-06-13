@@ -6,22 +6,25 @@ import Image from "next/image";
 import {
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss,
   SiFramer, SiPython, SiOpenai, SiNodedotjs, SiPostgresql,
-  SiFastapi, SiDocker,
+  SiFastapi, SiDocker, SiExpo,
 } from "react-icons/si";
-import { Brain, Layers, Code2, Cpu } from "lucide-react";
+import { TbBrandReactNative } from "react-icons/tb";
+import { Brain, Layers, Code2, Cpu, Smartphone } from "lucide-react";
 
 const stack = [
-  { name: "React",       icon: <SiReact />,       color: "text-cyan-400"   },
-  { name: "Next.js",     icon: <SiNextdotjs />,    color: "text-white"      },
-  { name: "TypeScript",  icon: <SiTypescript />,   color: "text-blue-400"   },
-  { name: "Tailwind",    icon: <SiTailwindcss />,  color: "text-sky-400"    },
-  { name: "Framer",      icon: <SiFramer />,       color: "text-pink-400"   },
-  { name: "Python",      icon: <SiPython />,       color: "text-yellow-400" },
-  { name: "Node.js",     icon: <SiNodedotjs />,    color: "text-green-400"  },
-  { name: "PostgreSQL",  icon: <SiPostgresql />,   color: "text-blue-300"   },
-  { name: "FastAPI",     icon: <SiFastapi />,      color: "text-emerald-400"},
-  { name: "OpenAI API",  icon: <SiOpenai />,       color: "text-zinc-300"   },
-  { name: "Docker",      icon: <SiDocker />,       color: "text-blue-400"   },
+  { name: "React",        icon: <SiReact />,             color: "text-cyan-400"   },
+  { name: "React Native", icon: <TbBrandReactNative />,  color: "text-cyan-300"   },
+  { name: "Expo",         icon: <SiExpo />,              color: "text-white"      },
+  { name: "Next.js",      icon: <SiNextdotjs />,         color: "text-white"      },
+  { name: "TypeScript",   icon: <SiTypescript />,        color: "text-blue-400"   },
+  { name: "Tailwind",     icon: <SiTailwindcss />,       color: "text-sky-400"    },
+  { name: "Framer",       icon: <SiFramer />,            color: "text-pink-400"   },
+  { name: "Python",       icon: <SiPython />,            color: "text-yellow-400" },
+  { name: "Node.js",      icon: <SiNodedotjs />,         color: "text-green-400"  },
+  { name: "PostgreSQL",   icon: <SiPostgresql />,        color: "text-blue-300"   },
+  { name: "FastAPI",      icon: <SiFastapi />,           color: "text-emerald-400"},
+  { name: "OpenAI API",   icon: <SiOpenai />,            color: "text-zinc-300"   },
+  { name: "Docker",       icon: <SiDocker />,            color: "text-blue-400"   },
 ];
 
 const stats = [
@@ -54,6 +57,14 @@ const services = [
     color: "from-emerald-600/20 to-emerald-400/5",
     border: "border-emerald-500/20",
     iconBg: "bg-emerald-500/15 text-emerald-400",
+  },
+  {
+    icon: <Smartphone size={22} />,
+    title: "Mobile App Development",
+    desc: "Cross-platform Android & iOS apps with React Native and Expo — native performance, smooth UX, and a single codebase shipped to both stores.",
+    color: "from-cyan-600/20 to-cyan-400/5",
+    border: "border-cyan-500/20",
+    iconBg: "bg-cyan-500/15 text-cyan-400",
   },
   {
     icon: <Cpu size={22} />,
@@ -199,7 +210,7 @@ const About: FC = () => {
               <strong className="text-blue-200 font-medium">High-Performance Web Systems</strong>.
             </p>
             <p>
-              I engineer intelligent, scalable architectures — from autonomous AI agents and neural pipelines to modern, responsive frontends. Systems that don&apos;t just process data, but{" "}
+              I engineer intelligent, scalable architectures — from autonomous AI agents and neural pipelines to modern web frontends and cross-platform mobile apps. Systems that don&apos;t just process data, but{" "}
               <strong className="text-purple-300 font-medium">comprehend, adapt, and scale</strong>.
             </p>
           </div>
@@ -243,7 +254,7 @@ const About: FC = () => {
           <h3 className="text-2xl md:text-3xl font-bold text-white">Core Capabilities</h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="flex flex-wrap justify-center gap-5">
           {services.map((svc, i) => (
             <motion.div
               key={svc.title}
@@ -252,7 +263,7 @@ const About: FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.1 }}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className={`relative p-6 rounded-2xl bg-gradient-to-br ${svc.color} border ${svc.border} backdrop-blur-sm overflow-hidden group cursor-default`}
+              className={`relative p-6 rounded-2xl bg-gradient-to-br ${svc.color} border ${svc.border} backdrop-blur-sm overflow-hidden group cursor-default w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)]`}
             >
               {/* Shimmer on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />

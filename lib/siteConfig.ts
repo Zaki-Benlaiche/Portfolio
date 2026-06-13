@@ -9,11 +9,11 @@
 export const siteConfig = {
   name: "Zaki Benlaiche",
   shortName: "Zaki.dev",
-  role: "AI & Full-Stack Developer",
+  role: "AI, Full-Stack & Mobile Developer",
   tagline:
-    "AI-Focused Full-Stack Developer specializing in intelligent multi-agent systems, LLM integrations, and scalable web applications.",
+    "AI-Focused developer specializing in intelligent multi-agent systems, LLM integrations, scalable web applications, and cross-platform mobile apps with React Native.",
   description:
-    "Portfolio of Zaki Benlaiche — AI-Focused Full-Stack Developer specializing in intelligent multi-agent systems, LLM integrations, and scalable web applications.",
+    "Portfolio of Zaki Benlaiche — AI-Focused Full-Stack & Mobile Developer building intelligent multi-agent systems, LLM integrations, scalable web applications, and cross-platform Android & iOS apps with React Native.",
 
   // Canonical production URL (used for metadata, sitemap, JSON-LD).
   url: "https://ben-zaki.vercel.app",

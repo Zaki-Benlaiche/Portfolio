@@ -23,11 +23,11 @@ const timeline: TimelineEntry[] = [
   {
     type: "work",
     period: "2024 — Present",
-    title: "AI & Full-Stack Developer",
+    title: "AI, Full-Stack & Mobile Developer",
     org: "Freelance",
     description:
-      "Designing and shipping intelligent multi-agent systems, LLM-powered tools, and scalable web applications for clients worldwide. Owning projects end-to-end from architecture to deployment.",
-    tags: ["LangChain", "Next.js", "FastAPI", "OpenAI API"],
+      "Designing and shipping intelligent multi-agent systems, LLM-powered tools, scalable web applications, and cross-platform Android & iOS apps with React Native. Owning projects end-to-end from architecture to deployment.",
+    tags: ["React Native", "Expo", "Next.js", "LangChain"],
   },
   {
     type: "project",

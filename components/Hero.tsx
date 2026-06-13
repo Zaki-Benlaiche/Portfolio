@@ -11,8 +11,9 @@ import { siteConfig } from "@/lib/siteConfig";
 const ROLES = [
   "AI Agent Architect",
   "Full-Stack Engineer",
+  "Mobile App Developer",
+  "React Native Engineer",
   "LLM Systems Builder",
-  "AI Systems Designer",
 ];
 
 function useTypewriter(words: string[], typeSpeed = 75, deleteSpeed = 40, pauseMs = 2200) {
@@ -50,7 +51,7 @@ const floatingBadges = [
   { label: "LangChain",     color: "from-green-500/20 to-emerald-500/10", border: "border-green-500/30", delay: 0.6 },
   { label: "TypeScript",    color: "from-blue-600/20 to-blue-400/10",   border: "border-blue-500/30",   delay: 0.8 },
   { label: "OpenAI API",    color: "from-purple-500/20 to-purple-400/10", border: "border-purple-500/30", delay: 1.0 },
-  { label: "Python",        color: "from-yellow-500/20 to-amber-400/10","border": "border-yellow-500/30", delay: 1.2 },
+  { label: "React Native",  color: "from-cyan-500/20 to-cyan-400/10",   border: "border-cyan-500/30",   delay: 1.2 },
 ];
 
 export default function Hero() {
@@ -129,7 +130,7 @@ export default function Hero() {
             <span className="hidden md:inline text-zinc-800">/</span>
             <span className="flex items-center gap-1.5"><SiHuggingface size={12} className="text-zinc-400" /> LLM Systems</span>
             <span className="hidden md:inline text-zinc-800">/</span>
-            <span>Full-Stack Scale</span>
+            <span>Web &amp; Mobile</span>
           </motion.div>
 
           {/* Description */}
@@ -139,7 +140,7 @@ export default function Hero() {
             transition={{ delay: 1.1 }}
             className="text-zinc-400 mb-10 leading-relaxed text-lg max-w-xl font-light"
           >
-            An <strong className="text-zinc-200 font-medium">AI-Focused Full-Stack Developer</strong> composing intelligent multi-agent systems, scalable infrastructure, and sophisticated web applications built for the AI era.
+            An <strong className="text-zinc-200 font-medium">AI-Focused Full-Stack &amp; Mobile Developer</strong> composing intelligent multi-agent systems, scalable web platforms, and cross-platform Android &amp; iOS apps built for the AI era.
           </motion.p>
 
           {/* CTA Buttons */}
