@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
-import { ExternalLink, Code2, Layers, Brain, Globe } from "lucide-react";
+import { ExternalLink, Code2, Layers, Brain, Globe, Smartphone } from "lucide-react";
 
-type Category = "All" | "AI / LLM" | "Full-Stack" | "Web";
+type Category = "All" | "AI / LLM" | "Full-Stack" | "Web" | "Mobile";
 
 interface Project {
   id: number;
@@ -26,6 +26,21 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    title: "NaqlGo",
+    shortDesc: "Cross-platform transport & logistics platform (web + mobile).",
+    description:
+      "NaqlGo is a transport and logistics platform connecting clients with drivers in real time. Built as a cross-platform product — a responsive web app and a React Native mobile app sharing the same backend — with live booking, order tracking, and a clean, fast UX. Designed for high-throughput, real-world transport operations.",
+    image: "/naqlGo.png",
+    tech: ["React Native", "Next.js", "TypeScript", "Node.js", "Tailwind CSS"],
+    category: "Mobile",
+    github: "#",
+    demo: "https://naql-go.vercel.app/",
+    year: "2025",
+    status: "Live",
+    featured: true,
+  },
+  {
+    id: 2,
     title: "Portfolio Website",
     shortDesc: "AI-aesthetic personal portfolio with 3D interactive canvas.",
     description:
@@ -40,7 +55,7 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    id: 2,
+    id: 3,
     title: "Stratos AI",
     shortDesc: "Strategic Business Intelligence Agent powered by multi-agent architecture.",
     description:
@@ -55,7 +70,7 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    id: 3,
+    id: 4,
     title: "Patient Management System",
     shortDesc: "Clinic and appointment management application.",
     description:
@@ -69,7 +84,7 @@ const projects: Project[] = [
     status: "Completed",
   },
   {
-    id: 4,
+    id: 5,
     title: "Restaurant Booking System",
     shortDesc: "Smart table reservation platform with real-time order tracking.",
     description:
@@ -83,7 +98,7 @@ const projects: Project[] = [
     status: "Completed",
   },
   {
-    id: 5,
+    id: 6,
     title: "E-commerce Platform",
     shortDesc: "Full-featured storefront with Stripe payment integration.",
     description:
@@ -98,13 +113,14 @@ const projects: Project[] = [
   },
 ];
 
-const CATEGORIES: Category[] = ["All", "AI / LLM", "Full-Stack", "Web"];
+const CATEGORIES: Category[] = ["All", "AI / LLM", "Full-Stack", "Web", "Mobile"];
 
 const categoryIcon: Record<Category, React.ReactNode> = {
   "All":        <Layers size={13} />,
   "AI / LLM":  <Brain size={13} />,
   "Full-Stack": <Code2 size={13} />,
   "Web":        <Globe size={13} />,
+  "Mobile":     <Smartphone size={13} />,
 };
 
 const statusColor: Record<Project["status"], string> = {
