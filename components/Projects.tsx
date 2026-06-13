@@ -73,11 +73,11 @@ const projects: Project[] = [
     shortDesc: "AI-aesthetic personal portfolio with 3D interactive canvas.",
     description:
       "A meticulously crafted personal portfolio built with React 19 and Next.js 15. Features a custom 3D particle canvas rendered via WebGL-style Canvas API, typewriter animations, smooth Framer Motion transitions, and a fully responsive AI-inspired design system. Integrated Resend for contact form handling.",
-    image: "/projects/portfolio.jpg",
+    image: "/portfolio.png",
     tech: ["React 19", "Next.js 15", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Resend"],
     category: "Web",
-    github: "https://github.com/zaki-benlaiche/Portfolio",
-    demo: "https://ben-zaki.vercel.app/",
+    github: "#",
+    demo: "https://zaki-benlaiche.vercel.app/",
     year: "2025",
     status: "Live",
     featured: true,
@@ -417,19 +417,16 @@ export default function ProjectsSection() {
 
                 {/* Actions */}
                 <div className="flex flex-wrap gap-3 pt-5 border-t border-white/8">
-                  <a
-                    href={selectedProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => selectedProject.github === "#" && e.preventDefault()}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                      selectedProject.github === "#"
-                        ? "bg-zinc-900 border border-zinc-800 text-zinc-600 cursor-not-allowed opacity-50"
-                        : "bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white"
-                    }`}
-                  >
-                    <FaGithub size={15} /> View Source
-                  </a>
+                  {selectedProject.github !== "#" && (
+                    <a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white"
+                    >
+                      <FaGithub size={15} /> View Source
+                    </a>
+                  )}
                   <a
                     href={selectedProject.demo}
                     target="_blank"
