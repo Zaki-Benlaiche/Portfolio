@@ -21,25 +21,42 @@ export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0);
-      setScrolled(window.scrollY > 30);
+    let ticking = false;
 
-      const sections = links.map((l) => l.id);
-      for (const id of sections) {
+    const measure = () => {
+      ticking = false;
+      const scrollY = window.scrollY;
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      setProgress(totalHeight > 0 ? (scrollY / totalHeight) * 100 : 0);
+      setScrolled((prev) => {
+        const next = scrollY > 30;
+        return prev === next ? prev : next;
+      });
+
+      for (const { id } of links) {
         const el = document.getElementById(id);
         if (el) {
-          const top    = el.offsetTop - 120;
+          const top = el.offsetTop - 120;
           const bottom = top + el.offsetHeight;
-          if (window.scrollY >= top && window.scrollY < bottom) {
-            setActive(id);
+          if (scrollY >= top && scrollY < bottom) {
+            setActive((prev) => (prev === id ? prev : id));
             break;
           }
         }
       }
     };
+
+    // Throttle to one measurement per animation frame to avoid layout thrashing.
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(measure);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    measure();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
