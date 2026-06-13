@@ -21,6 +21,10 @@ export const siteConfig = {
   // Public contact email shown on the site AND where the contact form delivers.
   email: "benlaichezakaria1902@gmail.com",
 
+  // Phone — used on the résumé (/cv) only, not on the public contact section.
+  phone: "+213 665 47 89 19",
+  phoneHref: "+213665478919",
+
   location: "Algeria",
   ogImage: "/profile.jpg",
   cvPath: "/cv",

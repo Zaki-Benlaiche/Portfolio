@@ -161,18 +161,23 @@ body {
 }
 
 /* Print styles for the /cv résumé page */
+.cv-sheet,
+.cv-sheet * {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
 @media print {
   .print-hidden { display: none !important; }
   body { background: #fff !important; }
   .cv-sheet {
     box-shadow: none !important;
     border-radius: 0 !important;
-    padding: 0 !important;
     max-width: 100% !important;
   }
 }
 @page {
-  margin: 14mm;
+  margin: 0;
+  size: A4;
 }
 
 /* Respect users who prefer reduced motion */
