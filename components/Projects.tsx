@@ -54,6 +54,20 @@ const projects: Project[] = [
     status: "Live",
   },
   {
+    id: 8,
+    title: "Reserve — Delivery App",
+    shortDesc: "Online ordering & delivery platform.",
+    description:
+      "A delivery application enabling customers to browse, order, and track deliveries through a fast, responsive interface. Built with a modern React + Vite stack for instant load times and a smooth, app-like experience across devices.",
+    image: "/reserve-vite.png",
+    tech: ["React", "Vite", "TypeScript", "Tailwind CSS"],
+    category: "Web",
+    github: "#",
+    demo: "https://reserve-vite.vercel.app/",
+    year: "2025",
+    status: "Live",
+  },
+  {
     id: 3,
     title: "Portfolio Website",
     shortDesc: "AI-aesthetic personal portfolio with 3D interactive canvas.",
@@ -246,7 +260,7 @@ export default function ProjectsSection() {
                 {/* Project number */}
                 <div className="absolute top-3 right-3 z-20 w-7 h-7 rounded-full bg-black/60 border border-white/10 flex items-center justify-center">
                   <span className="text-zinc-500 font-mono text-[10px]">
-                    {String(project.id).padStart(2, "0")}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
 
