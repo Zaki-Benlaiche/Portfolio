@@ -1,41 +1,89 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zaki Benlaiche — Portfolio
 
-## Getting Started
+A modern, AI-themed personal portfolio built with **Next.js 15**, **React 19**, **TypeScript**, **Tailwind CSS 4**, and **Framer Motion**.
 
-First, run the development server:
+🔗 **Live:** [ben-zaki.vercel.app](https://ben-zaki.vercel.app)
+
+---
+
+## ✨ Features
+
+- **AI-inspired design** — custom 3D particle canvas, typewriter roles, glassmorphism, and smooth motion.
+- **Sections** — Hero, About, Projects (filterable + modal), Experience timeline, and Contact.
+- **Contact form** — server-side validation, input sanitization, rate limiting, and honeypot spam protection via [Resend](https://resend.com).
+- **SEO-ready** — metadata, Open Graph / Twitter cards, JSON-LD structured data, `sitemap.xml`, `robots.txt`, and a PWA manifest.
+- **Accessible** — labelled form fields, skip-to-content link, visible focus rings, and `prefers-reduced-motion` support.
+- **Single source of truth** — all personal data lives in [`lib/siteConfig.ts`](lib/siteConfig.ts).
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# Run the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Environment Variables
 
-## Learn More
+Create a `.env.local` file in the project root:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+RESEND_API_KEY=your_resend_api_key
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Get a key at [resend.com/api-keys](https://resend.com/api-keys). Without it, the contact form returns a configuration error.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| What | Where |
+|------|-------|
+| Name, email, URL, social links | [`lib/siteConfig.ts`](lib/siteConfig.ts) |
+| Projects | [`components/Projects.tsx`](components/Projects.tsx) |
+| Experience / timeline | [`components/Experience.tsx`](components/Experience.tsx) |
+| Tech stack & services | [`components/About.tsx`](components/About.tsx) |
+| CV file | drop your `cv.pdf` into [`public/`](public/) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# Portfolio
-Personal portfolio website
->>>>>>> 7c3af6ed165b4e8da6c56c356bc1aadfcfb3fab8
+> **Note:** The "Download CV" button links to `/cv.pdf`. Add your résumé as `public/cv.pdf` for it to work.
+
+---
+
+## 📦 Scripts
+
+```bash
+npm run dev     # Start development server
+npm run build   # Production build
+npm run start   # Run the production build
+npm run lint    # Lint the project
+```
+
+---
+
+## 🧰 Tech Stack
+
+- [Next.js 15](https://nextjs.org) (App Router)
+- [React 19](https://react.dev)
+- [TypeScript](https://www.typescriptlang.org)
+- [Tailwind CSS 4](https://tailwindcss.com)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Resend](https://resend.com) for email
+- [Lucide](https://lucide.dev) & [React Icons](https://react-icons.github.io/react-icons/)
+
+---
+
+## 🚢 Deployment
+
+Optimized for [Vercel](https://vercel.com). Push to your repo, import the project, set the `RESEND_API_KEY` environment variable, and deploy.
+
+---
+
+© Zaki Benlaiche. All rights reserved.

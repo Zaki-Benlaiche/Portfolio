@@ -1,17 +1,19 @@
 import { FC } from "react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Zap } from "lucide-react";
+import { siteConfig } from "@/lib/siteConfig";
 
 const navLinks = [
-  { href: "#about",    label: "About"    },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact",  label: "Contact"  },
+  { href: "#about",      label: "About"      },
+  { href: "#projects",   label: "Projects"   },
+  { href: "#experience", label: "Experience" },
+  { href: "#contact",    label: "Contact"    },
 ];
 
 const socialLinks = [
-  { href: "https://github.com/zaki-benlaiche",    Icon: FaGithub,   label: "GitHub"   },
-  { href: "https://linkedin.com/in/zaki-benlaiche", Icon: FaLinkedin, label: "LinkedIn" },
-  { href: "https://twitter.com/zaki_benlaiche",   Icon: FaTwitter,  label: "Twitter"  },
+  { href: siteConfig.social.github,   Icon: FaGithub,   label: "GitHub"   },
+  { href: siteConfig.social.linkedin, Icon: FaLinkedin, label: "LinkedIn" },
+  { href: siteConfig.social.twitter,  Icon: FaTwitter,  label: "Twitter"  },
 ];
 
 const Footer: FC = () => {
@@ -94,7 +96,7 @@ const Footer: FC = () => {
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-zinc-900 text-xs font-mono text-zinc-700 gap-4">
           <span>
-            <span className="text-zinc-600">© {year}</span> Zaki Benlaiche — All nodes operational.
+            <span className="text-zinc-600">© {year}</span> {siteConfig.name} — All nodes operational.
           </span>
           <span className="text-zinc-800">
             Built with Next.js · TypeScript · Tailwind · Framer Motion

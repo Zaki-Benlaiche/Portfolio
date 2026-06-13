@@ -4,26 +4,29 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Mail, MapPin, Clock, CheckCircle } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { siteConfig } from "@/lib/siteConfig";
+
+const stripProtocol = (url: string) => url.replace(/^https?:\/\//, "");
 
 const contactLinks = [
   {
-    href: "mailto:benlaiche.zaki2002@gmail.com",
+    href: `mailto:${siteConfig.email}`,
     Icon: Mail,
     protocol: "Protocol: Mail",
-    label: "benlaiche.zaki2002@gmail.com",
+    label: siteConfig.email,
   },
   {
-    href: "https://github.com/zaki-benlaiche",
+    href: siteConfig.social.github,
     Icon: FaGithub,
     protocol: "Protocol: Git",
-    label: "github.com/zaki-benlaiche",
+    label: stripProtocol(siteConfig.social.github),
     external: true,
   },
   {
-    href: "https://linkedin.com/in/zaki-benlaiche",
+    href: siteConfig.social.linkedin,
     Icon: FaLinkedin,
     protocol: "Protocol: Network",
-    label: "linkedin.com/in/zaki-benlaiche",
+    label: stripProtocol(siteConfig.social.linkedin),
     external: true,
   },
 ];
@@ -32,6 +35,7 @@ export default function ContactSection() {
   const [name,    setName]    = useState("");
   const [email,   setEmail]   = useState("");
   const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot — bots fill this, humans never see it
   const [sent,    setSent]    = useState(false);
   const [loading, setLoading] = useState(false);
   const [error,   setError]   = useState("");
@@ -45,7 +49,7 @@ export default function ContactSection() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, website }),
       });
 
       if (res.ok) {
@@ -55,7 +59,7 @@ export default function ContactSection() {
         setMessage("");
         setTimeout(() => setSent(false), 6000);
       } else {
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
         setError(data.error || "Failed to send. Please try again.");
       }
     } catch {
@@ -85,7 +89,7 @@ export default function ContactSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="text-blue-400/60 font-mono text-xs tracking-[0.3em] uppercase mb-4 block">
-            03. Get In Touch
+            04. Get In Touch
           </span>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -214,14 +218,29 @@ export default function ContactSection() {
                   onSubmit={handleSubmit}
                   className="relative flex flex-col gap-5 w-full"
                 >
+                  {/* Honeypot — hidden from users, catches bots */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute left-[-9999px] top-0 h-0 w-0 opacity-0"
+                  />
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="group/field">
-                      <label className="block text-zinc-600 text-[10px] font-mono uppercase tracking-widest mb-2 group-focus-within/field:text-blue-400 transition-colors">
+                      <label htmlFor="contact-name" className="block text-zinc-600 text-[10px] font-mono uppercase tracking-widest mb-2 group-focus-within/field:text-blue-400 transition-colors">
                         Your Name
                       </label>
                       <input
+                        id="contact-name"
+                        name="name"
                         type="text"
                         required
+                        autoComplete="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full px-4 py-3.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-700 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 outline-none transition-all duration-300 text-sm"
@@ -229,12 +248,15 @@ export default function ContactSection() {
                       />
                     </div>
                     <div className="group/field">
-                      <label className="block text-zinc-600 text-[10px] font-mono uppercase tracking-widest mb-2 group-focus-within/field:text-blue-400 transition-colors">
+                      <label htmlFor="contact-email" className="block text-zinc-600 text-[10px] font-mono uppercase tracking-widest mb-2 group-focus-within/field:text-blue-400 transition-colors">
                         Email Address
                       </label>
                       <input
+                        id="contact-email"
+                        name="email"
                         type="email"
                         required
+                        autoComplete="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-4 py-3.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-700 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 outline-none transition-all duration-300 text-sm"
@@ -244,10 +266,12 @@ export default function ContactSection() {
                   </div>
 
                   <div className="group/field">
-                    <label className="block text-zinc-600 text-[10px] font-mono uppercase tracking-widest mb-2 group-focus-within/field:text-blue-400 transition-colors">
+                    <label htmlFor="contact-message" className="block text-zinc-600 text-[10px] font-mono uppercase tracking-widest mb-2 group-focus-within/field:text-blue-400 transition-colors">
                       Message
                     </label>
                     <textarea
+                      id="contact-message"
+                      name="message"
                       required
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}

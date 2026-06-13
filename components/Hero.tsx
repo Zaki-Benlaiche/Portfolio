@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { SiOpenai, SiHuggingface } from "react-icons/si";
 import HeroBackground3D from "./HeroBackground3D";
+import { siteConfig } from "@/lib/siteConfig";
 
 const ROLES = [
   "AI Agent Architect",
@@ -163,7 +164,7 @@ export default function Hero() {
               </motion.span>
             </a>
             <a
-              href="/cv.pdf"
+              href={siteConfig.cvPath}
               download
               className="px-8 py-3.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 text-white font-medium backdrop-blur-md transition-all duration-300 text-center flex items-center justify-center gap-2 group"
             >
@@ -179,9 +180,9 @@ export default function Hero() {
             className="flex gap-4 justify-center md:justify-start"
           >
             {[
-              { href: "https://github.com/zaki-benlaiche",   Icon: FaGithub,   label: "GitHub"   },
-              { href: "https://linkedin.com/in/zaki-benlaiche", Icon: FaLinkedin, label: "LinkedIn" },
-              { href: "https://twitter.com/zaki_benlaiche",  Icon: FaTwitter,  label: "Twitter"  },
+              { href: siteConfig.social.github,   Icon: FaGithub,   label: "GitHub"   },
+              { href: siteConfig.social.linkedin, Icon: FaLinkedin, label: "LinkedIn" },
+              { href: siteConfig.social.twitter,  Icon: FaTwitter,  label: "Twitter"  },
             ].map(({ href, Icon, label }) => (
               <a
                 key={label}
