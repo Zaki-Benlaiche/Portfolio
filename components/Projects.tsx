@@ -41,6 +41,20 @@ const projects: Project[] = [
   },
   {
     id: 2,
+    title: "Zaguett Family Restaurant",
+    shortDesc: "Modern website for the Zaguett Family restaurant.",
+    description:
+      "A modern, responsive website for Zaguett Family restaurant — showcasing the menu, brand identity, and location with a fast, mobile-first experience. Built for a smooth visitor journey from browsing dishes to getting in touch, with clean visuals and snappy performance.",
+    image: "/zaguet.png",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    category: "Web",
+    github: "#",
+    demo: "https://zaguet.vercel.app/",
+    year: "2025",
+    status: "Live",
+  },
+  {
+    id: 3,
     title: "Portfolio Website",
     shortDesc: "AI-aesthetic personal portfolio with 3D interactive canvas.",
     description:
@@ -55,7 +69,7 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    id: 3,
+    id: 4,
     title: "Stratos AI",
     shortDesc: "Strategic Business Intelligence Agent powered by multi-agent architecture.",
     description:
@@ -70,7 +84,7 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    id: 4,
+    id: 5,
     title: "Patient Management System",
     shortDesc: "Clinic and appointment management application.",
     description:
@@ -84,7 +98,7 @@ const projects: Project[] = [
     status: "Completed",
   },
   {
-    id: 5,
+    id: 6,
     title: "Restaurant Booking System",
     shortDesc: "Smart table reservation platform with real-time order tracking.",
     description:
@@ -98,7 +112,7 @@ const projects: Project[] = [
     status: "Completed",
   },
   {
-    id: 6,
+    id: 7,
     title: "E-commerce Platform",
     shortDesc: "Full-featured storefront with Stripe payment integration.",
     description:
