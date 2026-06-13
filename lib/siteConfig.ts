@@ -23,7 +23,7 @@ export const siteConfig = {
 
   location: "Algeria",
   ogImage: "/profile.jpg",
-  cvPath: "/cv.pdf",
+  cvPath: "/cv",
 
   social: {
     github: "https://github.com/zaki-benlaiche",

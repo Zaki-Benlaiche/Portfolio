@@ -166,10 +166,9 @@ export default function Hero() {
             </a>
             <a
               href={siteConfig.cvPath}
-              download
               className="px-8 py-3.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 text-white font-medium backdrop-blur-md transition-all duration-300 text-center flex items-center justify-center gap-2 group"
             >
-              <span className="text-zinc-400 group-hover:text-white transition-colors">📄</span> Download CV
+              <span className="text-zinc-400 group-hover:text-white transition-colors">📄</span> View CV
             </a>
           </motion.div>
 

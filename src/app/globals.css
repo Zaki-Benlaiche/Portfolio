@@ -160,6 +160,21 @@ body {
   border-radius: 4px;
 }
 
+/* Print styles for the /cv résumé page */
+@media print {
+  .print-hidden { display: none !important; }
+  body { background: #fff !important; }
+  .cv-sheet {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
+@page {
+  margin: 14mm;
+}
+
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
