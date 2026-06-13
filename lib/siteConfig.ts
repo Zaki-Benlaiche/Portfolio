@@ -22,7 +22,7 @@ export const siteConfig = {
   email: "benlaichezakaria1902@gmail.com",
 
   location: "Algeria",
-  ogImage: "/ARZ.jpg",
+  ogImage: "/profile.jpg",
   cvPath: "/cv.pdf",
 
   social: {

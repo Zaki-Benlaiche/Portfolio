@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     canonical: siteConfig.url,
   },
   icons: {
-    icon: "/ARZ.jpg",
-    shortcut: "/ARZ.jpg",
-    apple: "/ARZ.jpg",
+    icon: "/profile.jpg",
+    shortcut: "/profile.jpg",
+    apple: "/profile.jpg",
   },
   openGraph: {
     title: `${siteConfig.name} | ${siteConfig.role}`,
